@@ -1,1 +1,15 @@
 
+name: CI setup for Go #Workflow Name
+on: #on event keyword
+  push:
+    branches: [main] #identifying branch
+    
+jobs: #Jobs to execute
+  my-job: 
+    name: My Job
+    runs-on: ubuntu-latest #specify OS in vitual machine
+    steps:
+    - name: Print a greeting
+      run: |
+        ls
+        echo Hello there
