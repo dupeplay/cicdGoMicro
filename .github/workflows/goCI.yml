@@ -1,10 +1,7 @@
-
 name: CI setup for Go #Name the workflow
 on: #on event keyword
   push:
     branches: [main] #identifying branch
-  pull_request:
-    branches: [main]
     
 jobs: # Job to execute on event
   build:
@@ -19,7 +16,7 @@ jobs: # Job to execute on event
       uses: actions/setup-go@v2.1.3
       with:
         # The Go version to download (if necessary) and use. Supports semver spec and ranges.
-        go-version: 1.13.7 # optional 
+        go-version: 1.14 # optional 
         
     - name: show Go version # verify that go is installed
       run: go version # show go version
@@ -37,7 +34,7 @@ jobs: # Job to execute on event
       with:
         repository: lowkh2/GoSchoolRemoteExample # the hidden repo i am trying to access
         path: virtualRepoFolder #Folder to save to in my virtual env
-        token: ${{ secrets.ben_secret }} #Pass to enter remote hidden repo
+        token: ${{ secrets.ben_secret }} #Pass to enter remote hidden repository
     
     - name: Show hidden files
       run: |
@@ -48,42 +45,43 @@ jobs: # Job to execute on event
         
     - name: Install dependencies for GO
       run: |
-        go get github.com/franela/goblin # Adds package for Goblin testing
-        go get github.com/tebeka/go2xunit # Adds package for conversion
-        go test -v # Command to run go test
-        go test -v | go2xunit > report.xml # run test again and output as report.xml (to show the effect)
-        ls # verify that the report is indeed created
-    
+        go get github.com/franela/goblin  #adds package for goblin
+        go get github.com/tebeka/go2xunit #adds package to conversion
+        go test -v #Command to run test
+        go test -v | go2xunit > report.xml # run test and output report.xml
+        ls #verify the report is created
+        
     - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1 # Checkout Unit Test Reporting action
-      if: always() # always do it
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always()
       with:
-        files: report.xml #make use of a file we created
-    
+        files: report.xml
+        
     - if: ${{ success() }}
-      name: Create Upload directory
+      name: Create Upload Directory
       run: mkdir upload
-    
+      
     - name: Prepare Documents
       run: mv report.xml ./upload
-    
+      
     - name: Prepare artifacts
       uses: actions/upload-artifact@v2
       with:
         name: assetDocuments
         path: upload
-    
+        
     - name: Download Content
       uses: actions/download-artifact@v2
       with:
         name: assetDocuments
-    
+        
     - if: ${{ failure() }}
-      name: Create Issues Notifications
+      name: Create Issues Notification
       uses: nashmaniac/create-issue-action@v1.1
       with:
         title: Build Failed
         token: ${{secrets.GITHUB_TOKEN}}
         assignees: ${{github.actor}}
-        labels: workflow-failed
-        body: Workflow failed for commit ${{github.sha}}        
+        labels: worflow-failed
+        body: Workflow failed for commit ${{github.sha}}
+      
