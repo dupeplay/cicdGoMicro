@@ -9,6 +9,7 @@ jobs: #Jobs to execute
     name: My Job
     runs-on: ubuntu-latest #specify OS in vitual machine
     steps:
+    
     - name: Print a greeting
       run: |
         ls
@@ -18,4 +19,7 @@ jobs: #Jobs to execute
       uses: actions/setup-go@v2.1.3
       with:
         # The Go version to download (if necessary) and use. Supports semver spec and ranges.
-        go-version: 1.16.5
+        go-version: 1.16.5 #optional
+        
+    - name: show Go version #to verify whether Go is installed
+      run: go version
