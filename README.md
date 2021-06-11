@@ -1,2 +1,2 @@
 # cicdGoMicro
-cid Go microservices 3
+cicd Go microservices 3
