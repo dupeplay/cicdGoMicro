@@ -1,4 +1,6 @@
-package calc
+package main
+
+import "fmt"
 
 func main(){
 	
