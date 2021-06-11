@@ -23,3 +23,11 @@ jobs: #Jobs to execute
         
     - name: show Go version #to verify whether Go is installed
       run: go version
+      
+    - name: Checkout our Codes
+      uses: actions/checkout@v2
+      
+    - name: Check file system
+      run:
+        ls
+        cat calc.go
