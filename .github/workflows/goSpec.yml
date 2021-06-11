@@ -28,7 +28,7 @@ jobs: #Jobs to execute
       uses: actions/checkout@v2
       
     - name: Check file system
-      run:
+      run: |
         ls
         cat calc.go #prints content on calc.go
         
