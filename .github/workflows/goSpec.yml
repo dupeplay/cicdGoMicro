@@ -50,3 +50,9 @@ jobs: # Job to execute on event
         go test -v #Command to run test
         go test -v | go2xunit > report.xml # run test and output report.xml
         ls #verify the report is created
+        
+    - name: Publish Unit Test Results
+      uses: EricoMi/publish-unit-test-result-action@v1
+      if: always()
+      with:
+        files: report.xml
