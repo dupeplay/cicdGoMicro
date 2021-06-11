@@ -15,7 +15,7 @@ jobs: # Job to execute on event
     - name: Setup Go environment
       uses: actions/setup-go@v2.1.3
       with:
-        #The Go version to download (if necessary) and use. Supports semver spec and ranges.
+        #The Go version to download (if necessary) and use. Supports semver spec and ranges
         go-version: 1.14 # optional 
         
     - name: show Go version # verify that go is installed
