@@ -62,7 +62,7 @@ jobs: # Job to execute on event
       run: mkdir upload
       
     - name: Prepare Documents
-      run: mv reports.xml ./upload
+      run: mv report.xml ./upload
       
     - name: Prepare artifacts
       uses: actions/upload-artifact@v2
