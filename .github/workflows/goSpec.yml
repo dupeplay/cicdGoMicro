@@ -30,4 +30,5 @@ jobs: #Jobs to execute
     - name: Check file system
       run:
         ls
-        cat calc.go
+        cat calc.go #prints content on calc.go
+        
