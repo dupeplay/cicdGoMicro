@@ -34,7 +34,7 @@ jobs: # Job to execute on event
       with:
         repository: lowkh2/GoSchoolRemoteExample # the hidden repo i am trying to access
         path: virtualRepoFolder #Folder to save to in my virtual env
-        token: ${{ secrets.ben_secret }} #Pass to enter remote hidden repo
+        token: ${{ secrets.ben_secret }} #Pass to enter remote hidden repository
     
     - name: Show hidden files
       run: |
