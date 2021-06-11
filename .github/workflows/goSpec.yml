@@ -1,37 +1,34 @@
-
-name: CI setup for Go #Workflow Name
+name: CI setup for Go #Name the workflow
 on: #on event keyword
   push:
     branches: [main] #identifying branch
     
-jobs: #Jobs to execute
-  my-job: 
-    name: My Job
-    runs-on: ubuntu-latest #specify OS in vitual machine
+jobs: # Job to execute on event
+  build:
+    name: My Job 
+    runs-on: ubuntu-18.04 # specify OS in virtual machine
     steps:
-    
-    - name: Print a greeting
-      run: |
-        ls
-        echo Hello there
-    
+    - name: Print a greeting 
+      run: |  
+        ls 
+        echo Hello there!  # run terminal command
     - name: Setup Go environment
       uses: actions/setup-go@v2.1.3
       with:
         # The Go version to download (if necessary) and use. Supports semver spec and ranges.
-        go-version: 1.16.5 #optional
+        go-version: 1.16.5 # optional 
         
-    - name: show Go version #to verify whether Go is installed
-      run: go version
-      
-    - name: Checkout our Codes
+    - name: show Go version # verify that go is installed
+      run: go version # show go version
+    
+    - name: Checkout our codes  #bring repo code to virtual environment
       uses: actions/checkout@v2
       
-    - name: Check file system
+    - name: Check file system #check virtual environment has my files
       run: |
         ls
-        cat calc.go #prints content on calc.go
-        
+        cat calc.go   #prints the content of calc.go
+    
     - name: Checkout private repo remotely
       uses: actions/checkout@v2
       with:
